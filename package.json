@@ -1,20 +1,47 @@
 {
   "name": "memory-web-storage",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple replacement for web storages (i.e. localStorage) with the same API",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf lib es dist",
+    "prebuild": "npm run clean",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build": "run-p build:**",
+    "precommit": "lint-staged",
+    "prepare": "npm run build",
+    "prepublish": "test $(npm -v | tr . '\\n' | head -n 1) -ge '4' || exit 1",
+    "release:patch": "npm run prerelease && npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm run prerelease && npm version minor && npm publish && git push --follow-tags",
+    "release:major": "npm run prerelease && npm version major && npm publish && git push --follow-tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Andarist/memory-web-storage.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["memory", "storage", "localStorage", "sessionStorage"],
+  "author": "Mateusz Burzyński <mateuszburzynski@gmail.com> (https://github.com/Andarist)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Andarist/memory-web-storage/issues"
   },
-  "homepage": "https://github.com/Andarist/memory-web-storage#readme"
+  "homepage": "https://github.com/Andarist/memory-web-storage#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-annotate-pure-calls": "^0.2.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
+    "npm-run-all": "^4.1.1",
+    "prettier": "^1.7.4",
+    "rimraf": "^2.6.2"
+  }
 }
