@@ -1,6 +1,6 @@
 {
   "name": "memory-web-storage",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple replacement for web storages (i.e. localStorage) with the same API",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -26,7 +26,12 @@
     "type": "git",
     "url": "git+https://github.com/Andarist/memory-web-storage.git"
   },
-  "keywords": ["memory", "storage", "localStorage", "sessionStorage"],
+  "keywords": [
+    "memory",
+    "storage",
+    "localStorage",
+    "sessionStorage"
+  ],
   "author": "Mateusz Burzyński <mateuszburzynski@gmail.com> (https://github.com/Andarist)",
   "license": "MIT",
   "bugs": {
