@@ -2,25 +2,20 @@
   "name": "memory-web-storage",
   "version": "0.1.0",
   "description": "Simple replacement for web storages (i.e. localStorage) with the same API",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "./dist/memory-web-storage.cjs.js",
+  "module": "./dist/memory-web-storage.esm.js",
+  "types": "./types/index.d.ts",
   "files": [
-    "lib",
-    "es",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
-    "clean": "rimraf lib es dist",
+    "clean": "rimraf dist types",
     "prebuild": "npm run clean",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build": "run-p build:**",
+    "build": "rollup -c && tsc",
     "precommit": "lint-staged",
     "prepare": "npm run build",
-    "prepublish": "test $(npm -v | tr . '\\n' | head -n 1) -ge '4' || exit 1",
-    "release:patch": "npm version patch && npm publish && git push --follow-tags",
-    "release:minor": "npm version minor && npm publish && git push --follow-tags",
-    "release:major": "npm version major && npm publish && git push --follow-tags"
+    "preversion": "npm run prepare"
   },
   "repository": {
     "type": "git",
@@ -39,14 +34,17 @@
   },
   "homepage": "https://github.com/Andarist/memory-web-storage#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-annotate-pure-calls": "^0.2.0",
-    "babel-preset-env": "^1.6.1",
-    "cross-env": "^5.1.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.2.3",
-    "npm-run-all": "^4.1.1",
-    "prettier": "^1.7.4",
-    "rimraf": "^2.6.2"
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-plugin-annotate-pure-calls": "^0.4.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.9.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "typescript": "^3.4.3"
   }
 }

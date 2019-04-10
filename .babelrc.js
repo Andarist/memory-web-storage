@@ -1,14 +1,17 @@
-const modules = process.env.BABEL_ENV === 'cjs' ? 'commonjs' : false
-
 module.exports = {
   presets: [
     [
-      'env',
+      '@babel/preset-env',
       {
         loose: true,
-        modules,
-      }
-    ]
+        modules: false,
+      },
+    ],
+    '@babel/preset-typescript',
   ],
-  plugins: ['annotate-pure-calls'],
+  plugins: [
+    'annotate-pure-calls',
+    process.env.NODE_ENV === 'test' &&
+      '@babel/plugin-transform-modules-commonjs',
+  ].filter(Boolean),
 }

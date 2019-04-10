@@ -3,15 +3,12 @@
 [![npm version](https://img.shields.io/npm/v/memory-web-storage.svg)](https://www.npmjs.com/package/memory-web-storage)
 [![npm](https://img.shields.io/npm/dm/memory-web-storage.svg)](https://www.npmjs.com/package/memory-web-storage)
 
-This is a library providing a singleton object with [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API):
+This is a library providing a singleton object with API similar to [Web Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API):
+
 - `getItem`
 - `setItem`
 - `removeItem`
 - `clear`
-- `key`
-- `length` - read-only property
-
-At the moment it does not emit `storage` event though.
 
 ## default export
 
