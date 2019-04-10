@@ -1,6 +1,6 @@
 {
   "name": "memory-web-storage",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Simple replacement for web storages (i.e. localStorage) with the same API",
   "main": "./dist/memory-web-storage.cjs.js",
   "module": "./dist/memory-web-storage.esm.js",
